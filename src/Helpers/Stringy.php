@@ -4,7 +4,6 @@ namespace Grafite\Support\Helpers;
 
 use Manny\Manny;
 use NXP\MathExecutor;
-use Twitter\Text\Parser;
 use Twitter\Text\Extractor;
 use DonatelloZa\RakePlus\RakePlus;
 use DivineOmega\PHPSummary\SummaryTool;
