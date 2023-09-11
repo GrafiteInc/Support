@@ -2,8 +2,6 @@
 
 namespace Tests;
 
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\View;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 abstract class TestCase extends OrchestraTestCase

@@ -3,7 +3,7 @@
 **Support** - A handy set of Support components for Laravel apps.
 
 [![Build Status](https://github.com/GrafiteInc/Support/workflows/PHP%20Package%20Tests/badge.svg?branch=main)](https://github.com/GrafiteInc/Support/actions?query=workflow%3A%22PHP+Package+Tests%22)
-[![Maintainability](https://api.codeclimate.com/v1/badges/5c99d7022684ac3a220c/maintainability)](https://codeclimate.com/github/GrafiteInc/Support/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/a90e41bd64d41508ef0e/maintainability)](https://codeclimate.com/github/GrafiteInc/Support/maintainability)
 [![Packagist](https://img.shields.io/packagist/dt/grafite/support.svg)](https://packagist.org/packages/grafite/support)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://packagist.org/packages/grafite/support)
 

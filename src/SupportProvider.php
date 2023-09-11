@@ -2,9 +2,7 @@
 
 namespace Grafite\Support;
 
-use Grafite\Html\HtmlAssets;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\View\Compilers\BladeCompiler;
 
 class SupportProvider extends ServiceProvider
 {
@@ -16,7 +14,7 @@ class SupportProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../config/support.php' => base_path('config/support.php'),
+            __DIR__.'/../config/support.php' => base_path('config/support.php'),
         ]);
     }
 

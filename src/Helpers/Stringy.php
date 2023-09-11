@@ -2,11 +2,11 @@
 
 namespace Grafite\Support\Helpers;
 
+use DivineOmega\PHPSummary\SummaryTool;
+use DonatelloZa\RakePlus\RakePlus;
 use Manny\Manny;
 use NXP\MathExecutor;
 use Twitter\Text\Extractor;
-use DonatelloZa\RakePlus\RakePlus;
-use DivineOmega\PHPSummary\SummaryTool;
 
 class Stringy
 {

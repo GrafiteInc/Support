@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
 use Grafite\Support\Helpers\Stringy;
+use Tests\TestCase;
 
 class StringyTest extends TestCase
 {
@@ -16,7 +16,7 @@ class StringyTest extends TestCase
 
     public function testExtractKeywords()
     {
-        $text = "Criteria of compatibility of a system of linear Diophantine equations, strict inequations, and nonstrict inequations are considered. Upper bounds for components of a minimal set of solutions and algorithms of construction of minimal generating sets of solutions for all types of systems are given.";
+        $text = 'Criteria of compatibility of a system of linear Diophantine equations, strict inequations, and nonstrict inequations are considered. Upper bounds for components of a minimal set of solutions and algorithms of construction of minimal generating sets of solutions for all types of systems are given.';
 
         $keywords = Stringy::of($text)->keywords();
 
@@ -26,7 +26,7 @@ class StringyTest extends TestCase
 
     public function testExtractPhrases()
     {
-        $text = "Criteria of compatibility of a system of linear Diophantine equations, strict inequations, and nonstrict inequations are considered. Upper bounds for components of a minimal set of solutions and algorithms of construction of minimal generating sets of solutions for all types of systems are given.";
+        $text = 'Criteria of compatibility of a system of linear Diophantine equations, strict inequations, and nonstrict inequations are considered. Upper bounds for components of a minimal set of solutions and algorithms of construction of minimal generating sets of solutions for all types of systems are given.';
 
         $phrases = Stringy::of($text)->phrases();
 
@@ -36,7 +36,7 @@ class StringyTest extends TestCase
 
     public function testWordCount()
     {
-        $text = "Criteria of compatibility of a system of linear Diophantine equations, strict inequations, and nonstrict inequations are considered. Upper bounds for components of a minimal set of solutions and algorithms of construction of minimal generating sets of solutions for all types of systems are given.";
+        $text = 'Criteria of compatibility of a system of linear Diophantine equations, strict inequations, and nonstrict inequations are considered. Upper bounds for components of a minimal set of solutions and algorithms of construction of minimal generating sets of solutions for all types of systems are given.';
 
         $count = Stringy::of($text)->wordCount();
 
@@ -45,7 +45,7 @@ class StringyTest extends TestCase
 
     public function testCharacterCount()
     {
-        $text = "Criteria of compatibility of a system of linear Diophantine equations, strict inequations, and nonstrict inequations are considered. Upper bounds for components of a minimal set of solutions and algorithms of construction of minimal generating sets of solutions for all types of systems are given.";
+        $text = 'Criteria of compatibility of a system of linear Diophantine equations, strict inequations, and nonstrict inequations are considered. Upper bounds for components of a minimal set of solutions and algorithms of construction of minimal generating sets of solutions for all types of systems are given.';
 
         $count = Stringy::of($text)->characterCount();
 
@@ -54,7 +54,7 @@ class StringyTest extends TestCase
 
     public function testSummary()
     {
-        $text = "Criteria of compatibility of a system of linear Diophantine equations, strict inequations, and nonstrict inequations are considered. Upper bounds for components of a minimal set of solutions and algorithms of construction of minimal generating sets of solutions for all types of systems are given.";
+        $text = 'Criteria of compatibility of a system of linear Diophantine equations, strict inequations, and nonstrict inequations are considered. Upper bounds for components of a minimal set of solutions and algorithms of construction of minimal generating sets of solutions for all types of systems are given.';
 
         $summary = Stringy::of($text)->summary();
 
@@ -63,7 +63,7 @@ class StringyTest extends TestCase
 
     public function testGetKeySentence()
     {
-        $text = "Criteria of compatibility of a system of linear Diophantine equations, strict inequations, and nonstrict inequations are considered. Upper bounds for components of a minimal set of solutions and algorithms of construction of minimal generating sets of solutions for all types of systems are given.";
+        $text = 'Criteria of compatibility of a system of linear Diophantine equations, strict inequations, and nonstrict inequations are considered. Upper bounds for components of a minimal set of solutions and algorithms of construction of minimal generating sets of solutions for all types of systems are given.';
 
         $keySentence = Stringy::of($text)->keySentence();
 
@@ -76,7 +76,7 @@ class StringyTest extends TestCase
 
         $sentence = Stringy::of($text)->insert([
             'name' => 'Bob',
-            'age' => '65'
+            'age' => '65',
         ])->asPlainText();
 
         $this->assertEquals('My name is Bob and I am 65 years old.', $sentence);
