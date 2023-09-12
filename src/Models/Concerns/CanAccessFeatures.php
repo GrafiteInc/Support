@@ -14,7 +14,7 @@ trait CanAccessFeatures
             }
 
             if (is_array($feature)) {
-                return $feature['state'] && collect($feature['users'])->contains($this->id);
+                return $feature['state'] && collect(explode(',', $feature['users']))->contains($this->id);
             }
         }
     }

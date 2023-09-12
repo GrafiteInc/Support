@@ -13,6 +13,6 @@ return [
     // User based
     // 'portal' => [
     //     'state' => env('FEATURE_PORTAL', false),
-    //     'users' => env('FEATURE_PORTAL_USERS', [])
+    //     'users' => env('FEATURE_PORTAL_USERS')
     //],
 ];
