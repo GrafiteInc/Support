@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Concerns;
+namespace Grafite\Support\Models\Concerns;
 
 use Illuminate\Support\Facades\Schema;
 

@@ -31,7 +31,11 @@
     "autoload": {
         "psr-4": {
             "Grafite\\Support\\": "src/"
-        }
+        },
+        "files": [
+            "src/GlobalHelpers/RouteHelper.php",
+            "src/GlobalHelpers/SessionHelper.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
