@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v1.2.0] - 2023-12-13
+
+### Added
+- Command for purging cache on cloudflare
+
 ## [v1.1.1] - 2023-09-12
 
 ### Fixed
