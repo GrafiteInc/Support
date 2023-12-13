@@ -5,6 +5,7 @@ namespace Grafite\Support;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\ServiceProvider;
+use Grafite\Support\Commands\CloudflarePurge;
 
 class SupportProvider extends ServiceProvider
 {
@@ -50,6 +51,8 @@ class SupportProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->commands([
+            CloudflarePurge::class,
+        ]);
     }
 }
