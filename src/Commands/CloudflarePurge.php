@@ -28,15 +28,19 @@ class CloudflarePurge extends Command
      */
     public function handle()
     {
-        Http::post('https://api.cloudflare.com/client/v4/zones/'.$this->argument('zone').'/purge_cache', [
-            'purge_everything' => true,
-        ], [
+        $response = Http::withHeaders([
             'X-Auth-Email' => $this->argument('email'),
             'X-Auth-Key' => $this->argument('key'),
             'Content-Type' => 'application/json',
+        ])->post('https://api.cloudflare.com/client/v4/zones/'.$this->argument('zone').'/purge_cache', [
+            'purge_everything' => true,
         ]);
 
-        $this->info('Purged.');
+        if ($response->ok()) {
+            $this->info('Purged.');
+        } else {
+            $this->error('Failed to purge.');
+        }
 
         return 0;
     }
