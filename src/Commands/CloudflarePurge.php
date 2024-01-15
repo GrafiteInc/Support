@@ -28,7 +28,7 @@ class CloudflarePurge extends Command
      */
     public function handle()
     {
-        Http::delete('https://api.cloudflare.com/client/v4/zones/'.$this->argument('zone').'/purge_cache', [
+        Http::post('https://api.cloudflare.com/client/v4/zones/'.$this->argument('zone').'/purge_cache', [
             'purge_everything' => true,
         ], [
             'X-Auth-Email' => $this->argument('email'),
