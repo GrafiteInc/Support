@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v1.2.3] - 2024-01-15
+
+### Fixed
+- Minor issue with cloudflare config
+
 ## [v1.2.2] - 2024-01-15
 
 ### Fixed
