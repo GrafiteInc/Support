@@ -40,7 +40,10 @@ class SupportProvider extends ServiceProvider
                 return request()->routeIs($route);
             }
 
-            return url()->full() === route($route, $parameters);
+            $parsed = parse_url(url()->full());
+            $realUrl= $parsed['scheme']. '://'. $parsed['host']. $parsed['path'];
+
+            return $realUrl === route($route, $parameters);
         });
     }
 
