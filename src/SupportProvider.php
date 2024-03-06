@@ -2,10 +2,12 @@
 
 namespace Grafite\Support;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\ServiceProvider;
 use Grafite\Support\Commands\CloudflarePurge;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class SupportProvider extends ServiceProvider
 {
@@ -40,10 +42,53 @@ class SupportProvider extends ServiceProvider
                 return request()->routeIs($route);
             }
 
-            $parsed = parse_url(url()->full());
-            $realUrl= $parsed['scheme']. '://'. $parsed['host']. $parsed['path'];
+            try {
+                $parsed = parse_url(url()->full());
+                $realUrl= $parsed['scheme']. '://'. $parsed['host']. $parsed['path'];
 
-            return $realUrl === route($route, $parameters);
+                return $realUrl === route($route, $parameters);
+            } catch (\Throwable $th) {
+                return false;
+            }
+        });
+
+        Collection::macro('paginate', function($perPage, $page = null, $pageName = 'page') {
+            $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
+            return new LengthAwarePaginator(
+                $this->forPage($page, $perPage), // $items
+                $this->count(),                  // $total
+                $perPage,
+                $page,
+                [                                // $options
+                    'path' => LengthAwarePaginator::resolveCurrentPath(),
+                    'pageName' => $pageName,
+                ]
+            );
+        });
+
+        Collection::macro('sortByDate', function ($column = 'created_at') {
+            return $this->sortBy(function ($item) use ($column) {
+                return strtotime($item->$column);
+            }, SORT_REGULAR);
+        });
+
+        Collection::macro('sortByDateDesc', function ($column = 'created_at') {
+            return $this->sortByDesc(function ($item) use ($column) {
+                return strtotime($item->$column);
+            }, SORT_REGULAR);
+        });
+
+        Collection::macro('chunkBy', function ($column = 'created_at') {
+            $keys = array_values($this->pluck($column)->unique()->toArray());
+            $result = [];
+
+            foreach ($keys as $key) {
+                $result[$key] = $this->filter(function ($item) use ($column, $key) {
+                    return $key === $item->$column;
+                });
+            }
+
+            return collect($result);
         });
     }
 
