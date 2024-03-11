@@ -22,6 +22,9 @@ class SupportProvider extends ServiceProvider
             __DIR__.'/../config/features.php' => base_path('config/features.php'),
         ]);
 
+        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+        $this->loadViewsFrom(__DIR__.'/../views', 'support');
+
         Blade::if('feature', function ($key) {
             return request()->user()->hasFeatureAccess($key);
         });
