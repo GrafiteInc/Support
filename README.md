@@ -20,7 +20,7 @@ The Support package is a collection of handy tools for various Laravel component
 
 | Laravel Version | Package Tag | Supported |
 |-----------------|-------------|-----------|
-| ^9.x | 1.x | yes |
+| ^9.x - ^11.x | 1.x | yes |
 
 ### Installation
 
