@@ -13,9 +13,9 @@
                     </h4>
                     <div class="list-group mt-5">
                         @foreach ($sections as $section => $content)
-                            <a href="#{{ Str::of($section)->snake()->replace('.md', '') }}" class="list-group-item list-group-item-action">{{ Str::of($section)->title()->replace('.md', '') }}</a>
+                            <a href="#{{ Str::of($section)->snake()->replace('.md', '') }}" class="list-group-item list-group-item-action text-info">{{ Str::of($section)->title()->replace('.md', '') }}</a>
                         @endforeach
-                        <a href="/docs/api" class="list-group-item list-group-item-action">API Docs</a>
+                        <a href="/docs/api" class="list-group-item list-group-item-action text-info">API Docs</a>
                     </div>
                 </div>
             </div>
