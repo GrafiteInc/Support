@@ -21,7 +21,7 @@ class Stringy
 
     public function keywords()
     {
-        return collect(RakePlus::create(self::$string)
+        return collect(RakePlus::create(self::$string, 'en_US', 8)
             ->keywords());
     }
 
