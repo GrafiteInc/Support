@@ -36,3 +36,18 @@
         </div>
     </div>
 @stop
+
+@push('javascript')
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+
+    mermaid.initialize({
+        darkMode: (window.matchMedia('(prefers-color-scheme: dark)').matches),
+        startOnLoad: true
+    });
+
+    await mermaid.run({
+        querySelector: '.language-mermaid',
+    });
+</script>
+@endpush
