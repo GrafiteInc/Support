@@ -16,8 +16,12 @@ if (! app()->environment(['staging', 'production'])) {
             }
         }
 
+        if (base_path('CHANGELOG.md')) {
+            $sections['change_log'] = file_get_contents(base_path('CHANGELOG.md'));
+        }
+
         if (base_path('changelog.md')) {
-            $sections['changelog.md'] = file_get_contents(base_path('changelog.md'));
+            $sections['change_log'] = file_get_contents(base_path('changelog.md'));
         }
 
         return view('support::docs', [
