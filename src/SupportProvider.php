@@ -29,6 +29,12 @@ class SupportProvider extends ServiceProvider
             return request()->user()->hasFeatureAccess($key);
         });
 
+        Blade::directive('docs', function () {
+            if (! app()->environment('production')) {
+                return '<?php echo \Grafite\Support\Docs\Generate::handle() ?>';
+            }
+        });
+
         Blade::directive('session', function ($nonce) {
             return '<?php echo javascript_session_data('.$nonce.'); ?>';
         });

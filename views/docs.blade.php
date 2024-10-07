@@ -12,6 +12,10 @@
                         Docs
                     </h4>
                     <div class="list-group mt-5">
+                        <a href="/" class="list-group-item list-group-item-action text-info">
+                            <span class="fa fa-arrow-left"></span>
+                            Back to App
+                        </a>
                         @foreach ($sections as $section => $content)
                             <a href="#{{ Str::of($section)->snake()->replace('.md', '') }}" class="list-group-item list-group-item-action text-info">{{ Str::of($section)->title()->replace('.md', '') }}</a>
                         @endforeach
