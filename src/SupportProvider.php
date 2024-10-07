@@ -29,6 +29,12 @@ class SupportProvider extends ServiceProvider
             return request()->user()->hasFeatureAccess($key);
         });
 
+        Blade::directive('version', function () {
+            if (base_path('changelog.md')) {
+                return '<?php echo preg_match("/## (.*?) -/", file_get_contents(base_path(\'changelog.md\')), $matches) ? str_replace(\'[\', \'\', str_replace(\']\', \'\', $matches[1])) : ""; ?>';
+            }
+        });
+
         Blade::directive('docs', function () {
             if (! app()->environment('production')) {
                 return '<?php echo \Grafite\Support\Docs\Generate::handle() ?>';
