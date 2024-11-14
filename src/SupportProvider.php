@@ -64,10 +64,22 @@ class SupportProvider extends ServiceProvider
                 $parsed = parse_url(url()->full());
                 $realUrl= $parsed['scheme']. '://'. $parsed['host']. $parsed['path'];
 
-                return $realUrl === route($route, $parameters);
+                if ($realUrl === route($route, $parameters)) {
+                    return true;
+                }
+
+                if (url()->full() === route($route, $parameters)) {
+                    return true;
+                }
+
+                return false;
             } catch (\Throwable $th) {
                 return false;
             }
+        });
+
+        Collection::macro('toObject', function () {
+            return json_decode((json_encode($this)));
         });
 
         Collection::macro('paginate', function($perPage, $page = null, $pageName = 'page') {
