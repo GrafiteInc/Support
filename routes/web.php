@@ -6,6 +6,10 @@ Route::get('/up', function () {
     return view('support::up');
 });
 
+Route::get('/errors', function () {
+    return view('support::errors');
+});
+
 if (! app()->environment(['staging', 'production'])) {
     Route::get('/docs', function () {
         $files = scandir(base_path('docs'));
