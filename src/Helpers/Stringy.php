@@ -64,26 +64,29 @@ class Stringy
 
     public function hashtags()
     {
-        $data = Extractor::create()
-            ->extract(self::$string);
+        $hashtags = [];
 
-        return collect($data['hashtags']);
+        preg_match_all("/#(\w+)/u", self::$string, $matches);
+
+        if (!empty($matches[1])) {
+            $hashtags = $matches[1];
+        }
+
+        return collect($hashtags);
     }
 
     public function urls()
     {
-        $data = Extractor::create()
-            ->extract(self::$string);
+        preg_match_all('#\bhttps?://[^,\s()<>]+(?:(\([\w\d]+\)|([^,[:punct:]\s]|/)))#', self::$string, $matches);
 
-        return collect($data['urls']);
+        return collect($matches[0]);
     }
 
     public function mentions()
     {
-        $data = Extractor::create()
-            ->extract(self::$string);
+        preg_match_all('/@([a-zA-Z0-9_]+)/', self::$string, $matches);
 
-        return collect($data['mentions']);
+        return collect($matches[1]);
     }
 
     public function ipAddresses()

@@ -18,7 +18,6 @@
         "illuminate/collections": "^9.0|^10.0|^11.0|^12.0",
         "donatello-za/rake-php-plus": "^1.0",
         "divineomega/php-summary": "^3.0",
-        "nojimage/twitter-text-php": "^3.3",
         "hallindavid/manny": "^1.02",
         "nxp/math-executor": "^2.3"
     },
@@ -34,7 +33,8 @@
         },
         "files": [
             "src/GlobalHelpers/RouteHelper.php",
-            "src/GlobalHelpers/SessionHelper.php"
+            "src/GlobalHelpers/SessionHelper.php",
+            "src/GlobalHelpers/VersionHelper.php"
         ]
     },
     "autoload-dev": {

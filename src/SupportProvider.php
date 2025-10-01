@@ -30,12 +30,7 @@ class SupportProvider extends ServiceProvider
         });
 
         Blade::directive('version', function () {
-            if (base_path('changelog.md')) {
-                return '<?php echo preg_match("/## (.*?) -/", file_get_contents(base_path(\'changelog.md\')), $matches) ? str_replace(\'[\', \'\', str_replace(\']\', \'\', $matches[1])) : ""; ?>';
-            }
-            if (base_path('CHANGELOG.md')) {
-                return '<?php echo preg_match("/## (.*?) -/", file_get_contents(base_path(\'CHANGELOG.md\')), $matches) ? str_replace(\'[\', \'\', str_replace(\']\', \'\', $matches[1])) : ""; ?>';
-            }
+            return '<?php echo \Grafite\Support\Helpers\Version::release(); ?>';
         });
 
         Blade::directive('docs', function () {
