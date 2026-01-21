@@ -41,7 +41,7 @@ php artisan vendor:publish --provider="Grafite\Support\SupportProvider"
 
 ## Documentation
 
-[https://docs.grafite.ca/utilities/support](https://docs.grafite.ca/utilities/support)
+[https://documentation.grafite.ca/docs/utilities-support](https://documentation.grafite.ca/docs/utilities-support)
 
 ## License
 Support is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
