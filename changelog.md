@@ -3,6 +3,14 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v1.8.0] - 2026-02-23
+
+### Added
+- New `HasLocking` trait for model locking functionality
+- `ModelLockedException` for handling locked model errors
+- Lock timeout based on 15-minute inactivity (no updates to `updated_at`)
+- Session-based locking to prevent same user on different machines from bypassing locks
+
 ## [v1.7.1] - 2025-10-01
 
 ### Feature
