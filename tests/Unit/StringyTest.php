@@ -160,4 +160,40 @@ class StringyTest extends TestCase
 
         $this->assertEquals('888-777-6543', $result);
     }
+
+    public function testEmailDomains()
+    {
+        $text = 'Contact us at support@example.com or sales@company.org for more info. You can also reach admin@test.io';
+
+        $domains = Stringy::of($text)->emailDomains();
+
+        $this->assertCount(3, $domains);
+        $this->assertEquals('example.com', $domains->first());
+        $this->assertEquals('company.org', $domains[1]);
+        $this->assertEquals('test.io', $domains[2]);
+    }
+
+    public function testReadTime()
+    {
+        // 200 words = 1 minute read time
+        $text = trim(str_repeat('word ', 200));
+
+        $readTime = Stringy::of($text)->readTime();
+
+        $this->assertEquals(1, $readTime);
+
+        // 201 words should round up to 2 minutes
+        $text = trim(str_repeat('word ', 201));
+
+        $readTime = Stringy::of($text)->readTime();
+
+        $this->assertEquals(2, $readTime);
+
+        // 50 words should round up to 1 minute
+        $text = trim(str_repeat('word ', 50));
+
+        $readTime = Stringy::of($text)->readTime();
+
+        $this->assertEquals(1, $readTime);
+    }
 }

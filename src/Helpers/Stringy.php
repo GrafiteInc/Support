@@ -2,11 +2,10 @@
 
 namespace Grafite\Support\Helpers;
 
-use DivineOmega\PHPSummary\SummaryTool;
+use Grafite\Support\Services\SummaryTool;
 use DonatelloZa\RakePlus\RakePlus;
 use Manny\Manny;
 use NXP\MathExecutor;
-use Twitter\Text\Extractor;
 
 class Stringy
 {
@@ -34,6 +33,14 @@ class Stringy
     public function wordCount()
     {
         return count(explode(' ', self::$string));
+    }
+
+    public function readTime() : int
+    {
+        $wordsPerMinute = 200;
+        $wordCount = $this->wordCount();
+
+        return (int) ceil($wordCount / $wordsPerMinute);
     }
 
     public function characterCount()
@@ -94,6 +101,13 @@ class Stringy
         preg_match_all('/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/', self::$string, $ip_matches);
 
         return collect($ip_matches[0]);
+    }
+
+    public function emailDomains()
+    {
+        preg_match_all('/[a-zA-Z0-9._%+-]+@([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/', self::$string, $matches);
+
+        return collect($matches[1]);
     }
 
     public function insert($data)

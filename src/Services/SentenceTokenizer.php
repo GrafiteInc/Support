@@ -1,0 +1,36 @@
+<?php
+
+namespace Grafite\Support\Services;
+
+class SentenceTokenizer
+{
+    private $content = null;
+
+    public function setContent(?string $content): void
+    {
+        $this->content = $content;
+    }
+
+    public function getSentences(): array
+    {
+        if (!trim($this->content)) {
+            return [];
+        }
+
+        $contentParts = preg_split("/([\.\!\?])+/", $this->content, -1, PREG_SPLIT_DELIM_CAPTURE);
+
+        $sentences = [];
+
+        for ($i = 0; $i < count($contentParts); $i += 2) {
+            if (!isset($contentParts[$i + 1])) {
+                break;
+            }
+
+            $sentence = $contentParts[$i].$contentParts[$i + 1];
+            $sentence = trim($sentence);
+            $sentences[] = $sentence;
+        }
+
+        return $sentences;
+    }
+}
