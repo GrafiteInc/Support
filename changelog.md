@@ -3,6 +3,14 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v1.9.0] - 2026-04-07
+
+### Feature
+- stringy enhancements
+
+### Chore
+- update readme
+
 ## [v1.8.0] - 2026-02-23
 
 ### Added
