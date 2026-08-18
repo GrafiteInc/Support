@@ -173,6 +173,132 @@ class StringyTest extends TestCase
         $this->assertEquals('test.io', $domains[2]);
     }
 
+    public function testWords()
+    {
+        $words = Stringy::of('Hello, World! This is a test.')->words();
+
+        $this->assertCount(6, $words);
+        $this->assertEquals('hello', $words->first());
+    }
+
+    public function testSentences()
+    {
+        $sentences = Stringy::of('One thing happened. Another thing happened!')->sentences();
+
+        $this->assertCount(2, $sentences);
+        $this->assertEquals('One thing happened.', $sentences->first());
+    }
+
+    public function testParagraphs()
+    {
+        $paragraphs = Stringy::of("First para.\n\nSecond para.")->paragraphs();
+
+        $this->assertCount(2, $paragraphs);
+    }
+
+    public function testUniqueWords()
+    {
+        $unique = Stringy::of('dog cat dog bird')->uniqueWords();
+
+        $this->assertCount(3, $unique);
+    }
+
+    public function testWithoutStopwords()
+    {
+        $words = Stringy::of('The quick brown fox')->withoutStopwords();
+
+        $this->assertFalse($words->contains('the'));
+        $this->assertTrue($words->contains('quick'));
+    }
+
+    public function testNGrams()
+    {
+        $bigrams = Stringy::of('the quick brown fox')->nGrams(2);
+
+        $this->assertEquals('the quick', $bigrams->first());
+        $this->assertCount(3, $bigrams);
+    }
+
+    public function testWordFrequency()
+    {
+        $frequency = Stringy::of('dog cat dog bird dog')->wordFrequency();
+
+        $this->assertEquals(3, $frequency['dog']);
+        $this->assertEquals('dog', $frequency->keys()->first());
+    }
+
+    public function testSyllableCount()
+    {
+        $this->assertEquals(6, Stringy::of('the cat sat on hello')->syllableCount());
+    }
+
+    public function testReadability()
+    {
+        $readability = Stringy::of('The cat sat on the mat. The dog ran fast.')->readability();
+
+        $this->assertEquals(117.16, $readability['fleschReadingEase']);
+        $this->assertEquals('Very Easy', $readability['interpretation']);
+        $this->assertEquals(10, $readability['words']);
+    }
+
+    public function testReadingEaseAndGradeLevel()
+    {
+        $text = 'The cat sat on the mat. The dog ran fast.';
+
+        $this->assertEquals(117.16, Stringy::of($text)->readingEase());
+        $this->assertLessThan(1, Stringy::of($text)->gradeLevel());
+    }
+
+    public function testLexicalDensityAndTypeTokenRatio()
+    {
+        $text = 'The cat sat on the mat. The dog ran fast.';
+
+        $this->assertEquals(0.6, Stringy::of($text)->lexicalDensity());
+        $this->assertEquals(0.8, Stringy::of($text)->typeTokenRatio());
+    }
+
+    public function testReadabilityIgnoresMarkup()
+    {
+        $withTags = Stringy::of('<p>The cat sat on the mat.</p> <p>The dog ran fast.</p>')->readability();
+
+        $this->assertEquals(10, $withTags['words']);
+        $this->assertEquals(2, $withTags['sentences']);
+    }
+
+    public function testSentiment()
+    {
+        $sentiment = Stringy::of('The food is good.')->sentiment();
+
+        $this->assertEquals(0.4404, $sentiment['compound']);
+        $this->assertGreaterThan(0, $sentiment['positive']);
+        $this->assertEquals(0, $sentiment['negative']);
+    }
+
+    public function testSentimentScoreAndLabel()
+    {
+        $this->assertEquals(0.4404, Stringy::of('The food is good.')->sentimentScore());
+        $this->assertEquals('positive', Stringy::of('The food is good.')->sentimentLabel());
+        $this->assertEquals('negative', Stringy::of('The food is horrible.')->sentimentLabel());
+        $this->assertEquals('neutral', Stringy::of('The meeting is at noon.')->sentimentLabel());
+    }
+
+    public function testSentimentBySentence()
+    {
+        $results = Stringy::of('The food was great. The service was terrible.')->sentimentBySentence();
+
+        $this->assertCount(2, $results);
+        $this->assertGreaterThan(0, $results->first()['compound']);
+        $this->assertLessThan(0, $results->last()['compound']);
+    }
+
+    public function testSentimentIgnoresMarkup()
+    {
+        $this->assertEquals(
+            Stringy::of('The food is good.')->sentimentScore(),
+            Stringy::of('<p>The food is <em>good</em>.</p>')->sentimentScore()
+        );
+    }
+
     public function testReadTime()
     {
         // 200 words = 1 minute read time

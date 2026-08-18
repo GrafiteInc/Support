@@ -20,6 +20,7 @@ class SupportProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../config/features.php' => base_path('config/features.php'),
+            __DIR__.'/../config/stringy.php' => base_path('config/stringy.php'),
         ]);
 
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
@@ -124,6 +125,8 @@ class SupportProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__.'/../config/stringy.php', 'stringy');
+
         $this->commands([
             CloudflarePurge::class,
         ]);
