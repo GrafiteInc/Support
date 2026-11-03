@@ -3,6 +3,14 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v1.10.0] - 2026-11-03
+
+### Feat(views)
+- add dark mode and standalone docs/up pages
+
+### Feature
+- stringy got language skills
+
 ## [v1.9.0] - 2026-04-07
 
 ### Feature
